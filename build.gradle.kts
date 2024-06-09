@@ -4,7 +4,20 @@ plugins {
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
+var lombok_version = "1.18.32"
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    // lombok
+    compileOnly("org.projectlombok:lombok:$lombok_version")
+    annotationProcessor("org.projectlombok:lombok:$lombok_version")
+
+    // https://mvnrepository.com/artifact/com.googlecode.libphonenumber/libphonenumber
+    implementation("com.googlecode.libphonenumber:libphonenumber:8.13.38")
+
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    implementation("commons-validator:commons-validator:1.9.0")
 }
