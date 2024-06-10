@@ -7,7 +7,7 @@ A repository containing code that does various stuff with CSV files.
 Just a simple program that demonstrates how quotes need to be handled
 in different scenarios in the context of a CSV file.
 
-### [SimpleCSVReaderWriter](./src/main/java/org/example/simple/SimpleCSVReaderWriter.java)
+### [CSVReaderWriter](./src/main/java/org/example/util/CSVReaderWriter.java)
 
 A simple CSV reader / writer implementation that works well on CSV input handling
 various quirks neatly.

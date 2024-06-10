@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.data.CustomerData;
-import org.example.simple.SimpleCSVReaderWriter;
+import org.example.util.CSVReaderWriter;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * A simple demo class showcasing the working of the SimpleCSVReaderWriter class.
+ * A simple demo class showcasing the working of the CSVReaderWriter class.
  * It reads the data from a CSV file, transforms each row into an instance of the
  * {@link CustomerData} class and prints the list of instances.
  */
@@ -45,12 +45,12 @@ public class SimpleCSVDemo {
         try (FileInputStream fis = new FileInputStream(customerDataFile);
              Reader fr = new InputStreamReader(fis, StandardCharsets.UTF_8))
         {
-            headers = SimpleCSVReaderWriter.parseLine(fr);
+            headers = CSVReaderWriter.parseLine(fr);
 
-            List<String> values = SimpleCSVReaderWriter.parseLine(fr);
+            List<String> values = CSVReaderWriter.parseLine(fr);
             while (values != null) {
                 customerCollection.add(CustomerData.constructFromStrings(values));
-                values = SimpleCSVReaderWriter.parseLine(fr);
+                values = CSVReaderWriter.parseLine(fr);
             }
         }
 
@@ -86,10 +86,10 @@ public class SimpleCSVDemo {
         try (FileOutputStream fos = new FileOutputStream(outputCsvFile);
              Writer fw = new OutputStreamWriter(fos, StandardCharsets.UTF_8))
         {
-            SimpleCSVReaderWriter.writeLine(fw, headers);
+            CSVReaderWriter.writeLine(fw, headers);
 
             for (CustomerData cd : customers) {
-                SimpleCSVReaderWriter.writeLine(fw, cd.toCsvLine());
+                CSVReaderWriter.writeLine(fw, cd.toCsvLine());
             }
         }
     }
