@@ -45,8 +45,6 @@ public class SimpleCSVDemo {
         try (FileInputStream fis = new FileInputStream(customerDataFile);
              Reader fr = new InputStreamReader(fis, StandardCharsets.UTF_8))
         {
-
-
             headers = SimpleCSVReaderWriter.parseLine(fr);
 
             List<String> values = SimpleCSVReaderWriter.parseLine(fr);
