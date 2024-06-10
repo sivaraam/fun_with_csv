@@ -25,6 +25,12 @@ be written back.
 
 Input path for test data: `test-data/customers-1000.csv`
 
+#### Run with Gradle
+
+```shell
+./gradlew runDemo
+```
+
 ### Interesting resources
 
 - [RFC 4180: Common Format and MIME Type for Comma-Separated Values (CSV) Files](https://www.rfc-editor.org/rfc/rfc4180)

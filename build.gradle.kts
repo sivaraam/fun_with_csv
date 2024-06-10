@@ -21,3 +21,12 @@ dependencies {
     // https://mvnrepository.com/artifact/commons-validator/commons-validator
     implementation("commons-validator:commons-validator:1.9.0")
 }
+
+tasks.register<JavaExec>("runDemo") {
+    group = "application"
+    description = "Run the CSV Demo Java class"
+    mainClass.set("org.example.SimpleCSVDemo")
+    classpath = sourceSets["main"].runtimeClasspath
+    standardInput = System.`in` // Set standard input to the console input
+    standardOutput = System.`out` // Set standard input to the console input
+}
