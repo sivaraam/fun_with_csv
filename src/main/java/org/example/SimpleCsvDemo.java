@@ -55,7 +55,7 @@ public class SimpleCsvDemo {
         }
 
         System.out.println(headers);
-        System.out.println(customerCollection);
+        customerCollection.forEach(System.out::println);
 
         writeCustomers(headers, customerCollection);
     }
