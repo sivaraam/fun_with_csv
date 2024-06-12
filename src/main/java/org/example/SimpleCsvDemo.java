@@ -28,7 +28,7 @@ public class SimpleCsvDemo {
             String customerFilePath = scanner.nextLine();
 
             // Create a File object with the provided path
-            customerDataFile = new File(customerFilePath);
+            customerDataFile = new File(customerFilePath.trim());
 
             // Check if the file exists and is a file
             if (customerDataFile.exists() && customerDataFile.isFile()) {
@@ -71,7 +71,7 @@ public class SimpleCsvDemo {
                 String outputFilePath = scanner.nextLine();
 
                 // Create a File object with the provided path
-                outputCsvFile = new File(outputFilePath);
+                outputCsvFile = new File(outputFilePath.trim());
 
                 // Check if the file exists and is a file
                 if (outputCsvFile.exists() && outputCsvFile.isFile()) {
