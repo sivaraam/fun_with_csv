@@ -53,6 +53,7 @@ Input path for test data: `test-data/customers-1000.csv`
   It might be interesting to explore similar offerings in Java. Alternatively, we could look for
   a bridge to this library.
 
-### Interesting reads
+### Other interesting stuff
 
 - [unicode - What's the difference between UTF-8 and UTF-8 with BOM? - Stack Overflow](https://stackoverflow.com/q/2223882/5614968)
+- [liquidaty/zsv: zsv+lib: tabular data swiss-army knife CLI + world's fastest (simd) CSV parser](https://github.com/liquidaty/zsv?tab=readme-ov-file)
