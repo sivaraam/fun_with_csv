@@ -17,7 +17,7 @@ package org.example;
  *
  * <a href="https://stackoverflow.com/a/69535500/5614968">Reference</a>
  */
-public class CSVQuotes {
+public class CsvQuotes {
     public static String addQuote(
             String pValue) {
         if (pValue == null) {

@@ -25,7 +25,7 @@ dependencies {
 tasks.register<JavaExec>("runDemo") {
     group = "application"
     description = "Run the CSV Demo Java class"
-    mainClass.set("org.example.SimpleCSVDemo")
+    mainClass.set("org.example.SimpleCsvDemo")
     classpath = sourceSets["main"].runtimeClasspath
     standardInput = System.`in` // Set standard input to the console input
     standardOutput = System.`out` // Set standard input to the console input

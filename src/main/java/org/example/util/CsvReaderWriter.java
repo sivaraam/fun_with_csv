@@ -10,7 +10,7 @@ import java.util.Vector;
  *  https://agiletribe.wordpress.com/2012/11/23/the-only-class-you-need-for-csv-files/
  *  https://stackoverflow.com/a/13655640/5614968
  */
-public class CSVReaderWriter {
+public class CsvReaderWriter {
 
     public static void writeLine(Writer w, List<String> values)
             throws Exception {
