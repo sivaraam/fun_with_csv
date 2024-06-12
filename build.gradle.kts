@@ -30,3 +30,15 @@ tasks.register<JavaExec>("runDemo") {
     standardInput = System.`in` // Set standard input to the console input
     standardOutput = System.`out` // Set standard input to the console input
 }
+
+/**
+ * Simple task to run the CsvQuotes class.
+ */
+tasks.register<JavaExec>("runCsvQuotes") {
+    group = "application"
+    description = "Run the CSV REPL dmeo class"
+    mainClass.set("org.example.CsvQuotes")
+    classpath = sourceSets["main"].runtimeClasspath
+    standardInput = System.`in` // Set standard input to the console input
+    standardOutput = System.`out` // Set standard input to the console input
+}
