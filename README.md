@@ -28,7 +28,7 @@ Input path for test data: `test-data/customers-1000.csv`
 ### Run with Gradle
 
 ```shell
-./gradlew runDemo
+./gradlew runSimpleDemo
 ```
 
 ## Resources

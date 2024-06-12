@@ -22,7 +22,7 @@ dependencies {
     implementation("commons-validator:commons-validator:1.9.0")
 }
 
-tasks.register<JavaExec>("runDemo") {
+tasks.register<JavaExec>("runSimpleDemo") {
     group = "application"
     description = "Run the simple CSV demo class"
     mainClass.set("org.example.SimpleCsvDemo")
