@@ -1,13 +1,12 @@
 # Fun with CSV
 
 A repository containing code that does various stuff with CSV files.
+This is an IntelliJ project and has some project configurations to run the
+various classes. This projects requires Java 11 as a minimum.
 
-## [CsvQuotes](./src/main/java/org/example/CsvQuotes.java)
+## Simple CSV Demo
 
-Just a simple program that demonstrates how quotes need to be handled
-in different scenarios in the context of a CSV file.
-
-## [CsvReaderWriter](./src/main/java/org/example/util/CsvReaderWriter.java)
+### [CsvReaderWriter](./src/main/java/org/example/util/CsvReaderWriter.java)
 
 A simple CSV reader / writer implementation that works well on CSV input handling
 various quirks neatly.
@@ -16,20 +15,53 @@ Some related resources:
 - [The Only Class You Need for CSV Files | Agile Software Craftsmanship](https://agiletribe.wordpress.com/2012/11/23/the-only-class-you-need-for-csv-files/)
 - [CSV parsing in Java - working example..?](https://stackoverflow.com/a/13655640/5614968)
 
-## [SimpleCsvDemo](./src/main/java/org/example/SimpleCsvDemo.java)
+### [SimpleCsvDemo](./src/main/java/org/example/SimpleCsvDemo.java)
 
 A simple demo for the `SimpleCsvReaderWriter` class. It takes in a file
 path as input and prints the object constructed from the CSV data in
 the console. Further gets a new file path to which the CSV data needs to
 be written back.
 
-Input path for test data: `test-data/customers-1000.csv`
+### Run the demo
 
-### Run with Gradle
+After opening the project using IntelliJ, it should be possible to run
+this class using the available run configuration. Alternatively, steps
+to run using Gradle is given below.
+
+#### Run with Gradle
 
 ```shell
 ./gradlew runSimpleDemo
 ```
+
+#### Input path for test data
+
+`test-data/customers-1000.csv`
+
+#### Output
+
+You will see the `CustomerData` instances printed in the terminal.
+After that, there will be a prompt to enter the output to save
+the read CSV data into a file. You could enter the output path of
+your choice.
+
+
+## [CsvQuotes](./src/main/java/org/example/CsvQuotes.java)
+
+Just a simple program that demonstrates how quotes need to be handled
+in different scenarios in the context of a CSV file.
+
+### Run the demo
+
+After opening the project using IntelliJ, it should be possible to run
+this class using the available run configuration. Alternatively, the following
+Gradle command could be used to run this demo:
+to run using Gradle is given below.
+
+```shell
+./gradlew runCsvQuotes
+```
+
 
 ## Resources
 
