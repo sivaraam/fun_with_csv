@@ -77,8 +77,17 @@ public class SimpleCsvDemo {
                 if (outputCsvFile.exists() && outputCsvFile.isFile()) {
                     System.out.println("The provided path already exists. Please give a different path.");
                 } else {
-                    validPath = true;
-                    System.out.println("Output file path: " + outputCsvFile.getAbsolutePath());
+                    File parentDir = outputCsvFile.getParentFile();
+
+                    if (parentDir != null && parentDir.exists()) {
+                        // Check if the parent directory is writable
+                        if (!parentDir.canWrite()) {
+                            System.out.println("The parent directory of the given path is not writable. Please give a different path.");
+                        } else {
+                            validPath = true;
+                            System.out.println("Output file path: " + outputCsvFile.getAbsolutePath());
+                        }
+                    }
                 }
             }
         }
