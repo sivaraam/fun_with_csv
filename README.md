@@ -44,6 +44,8 @@ using the IntelliJ run configuration.
 
 `test-data/customers-1000.csv`
 
+_Note_: File path auto-completion is supported by the library. 
+
 ### Other interesting libraries
 
 - **[picocli](https://picocli.info/)** - a mighty tiny command line interface

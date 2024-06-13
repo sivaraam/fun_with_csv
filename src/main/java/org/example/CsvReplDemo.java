@@ -2,6 +2,8 @@ package org.example;
 
 import de.siegmar.fastcsv.reader.CsvReader;
 import de.siegmar.fastcsv.reader.CsvRecord;
+import org.jline.builtins.Completers;
+import org.jline.reader.Completer;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
@@ -21,9 +23,12 @@ public class CsvReplDemo {
     public static void main(String[] args) {
         try {
             Terminal terminal = TerminalBuilder.builder().build();
+            // Create a FileNameCompleter for file name auto-completion
+            Completer fileNameCompleter = new Completers.FileNameCompleter();
 
             LineReader reader = LineReaderBuilder.builder()
                                                  .terminal(terminal)
+                                                 .completer(fileNameCompleter)
                                                  .build();
 
             while (true) {
