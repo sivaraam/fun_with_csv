@@ -4,6 +4,66 @@ A repository containing code that does various stuff with CSV files.
 This is an IntelliJ project and has some project configurations to run the
 various classes. This projects requires Java 11 as a minimum.
 
+
+## CSV REPL
+
+A simple CSV REPL program that provides two options. One to parse a
+new CSV file and another to print the contents of the last parsed CSV file
+in the console.
+
+The REPL console interactions is implemented using the [JLine library](https://github.com/jline/jline3).
+JLine has been chosen as it seemed to provide relevant for this simple
+application while having the extensibility to plug-in advanced input handling
+such as [path completion](https://github.com/jline/jline3/wiki/Completion).
+
+The CSV parsing is done using the [FastCSV](https://github.com/osiegmar/FastCSV)
+library. It is said to be a performant library as mentioned in the
+["Faster processing"](#faster-processing) section below.
+
+### Run the demo
+
+It is ideal to run the demo by generating the shadow JAR and running the same
+via an actual terminal. This ensures that features like history are available.
+The following is the command to run the same:
+
+```shell
+./gradlew shadowJar && java -jar ./build/libs/fun_with_csv-1.0-SNAPSHOT-all.jar
+```
+
+Alternatively, running the REPL demo could be run in dumb terminal using the
+following command:
+
+```shell
+./gradlew runCsvRepl
+```
+
+_Note_: Running the demo in dumb terminal mode could also be achieved by running it
+using the IntelliJ run configuration.
+
+#### Input path for test data
+
+`test-data/customers-1000.csv`
+
+### Other interesting libraries
+
+- **[picocli](https://picocli.info/)** - a mighty tiny command line interface
+
+  This seems to be a good option if we need to build an application that runs
+  on / off the JVM.
+
+- **[lanterna](https://github.com/mabe02/lanterna)**
+
+  This seems to be a good option if we need to build a CLI that renders a
+  text-based GUIs. Something like the following
+
+  <details>
+  <summary>Text-based GUI rendered using lanterna</summary>
+
+  ![Text-based GUI based on lanterna](./img/lanterna-gui.png)
+
+  </details>
+
+
 ## Simple CSV Demo
 
 ### [CsvReaderWriter](./src/main/java/org/example/util/CsvReaderWriter.java)
