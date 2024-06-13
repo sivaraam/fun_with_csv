@@ -32,7 +32,7 @@ public class CustomerData {
     URI website;
 
     private static PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-    private static DateTimeFormatter subscriptionDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter subscriptionDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static CustomerData constructFromStrings(List<String> customerValues) throws NumberParseException, URISyntaxException {
         CustomerDataBuilder newCustomer = CustomerData.builder();

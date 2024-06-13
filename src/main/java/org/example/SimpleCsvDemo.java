@@ -1,13 +1,14 @@
 package org.example;
 
 import org.example.data.CustomerData;
+import org.example.data.Customers;
 import org.example.util.CsvReaderWriter;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
+import static org.example.util.CustomCsvUtil.parseCustomersFromCsv;
+import static org.example.util.CustomCsvUtil.writeCustomers;
 
 /**
  * A simple demo class showcasing the working of the {@link CsvReaderWriter} class.
@@ -22,6 +23,9 @@ public class SimpleCsvDemo {
         Scanner scanner = new Scanner(System.in);
         boolean validPath = false;
 
+        /*
+         * Step 1. Get the input file path from the user
+         */
         while (!validPath) {
             // Prompt the user to enter a file path
             System.out.println("Please enter the file path:");
@@ -39,68 +43,50 @@ public class SimpleCsvDemo {
             }
         }
 
-        List<String> headers;
-        List<CustomerData> customerCollection = new ArrayList<>();
+        /*
+         *  Step 2: Parse the input file path from the user and get the CustomerData instances
+         */
+        Customers parsedCustomers = parseCustomersFromCsv(customerDataFile);
 
-        try (FileInputStream fis = new FileInputStream(customerDataFile);
-             Reader fr = new InputStreamReader(fis, StandardCharsets.UTF_8))
-        {
-            headers = CsvReaderWriter.parseLine(fr);
+        System.out.println(parsedCustomers.getHeaders());
+        parsedCustomers.getCustomerCollection().forEach(System.out::println);
 
-            List<String> values = CsvReaderWriter.parseLine(fr);
-            while (values != null) {
-                customerCollection.add(CustomerData.constructFromStrings(values));
-                values = CsvReaderWriter.parseLine(fr);
-            }
-        }
-
-        System.out.println(headers);
-        customerCollection.forEach(System.out::println);
-
-        writeCustomers(headers, customerCollection);
-    }
-
-    private static void writeCustomers(List<String> headers, List<CustomerData> customers) throws Exception {
+        /*
+         * Step 3: Get the output file path from the user
+         */
         File outputCsvFile = null;
-        try (Scanner scanner = new Scanner(System.in)) {
-            boolean validPath = false;
+        validPath = false;
+        while (!validPath) {
+            // Prompt the user to enter a file path
+            System.out.println("Please enter the file path to save the CSV file:");
+            String outputFilePath = scanner.nextLine();
 
-            while (!validPath) {
-                // Prompt the user to enter a file path
-                System.out.println("Please enter the file path to save the CSV file:");
-                String outputFilePath = scanner.nextLine();
+            // Create a File object with the provided path
+            outputCsvFile = new File(outputFilePath.trim());
 
-                // Create a File object with the provided path
-                outputCsvFile = new File(outputFilePath.trim());
+            // Check if the file exists and is a file
+            if (outputCsvFile.exists() && outputCsvFile.isFile()) {
+                System.out.println("The provided path already exists. Please give a different path.");
+            } else {
+                File parentDir = outputCsvFile.getParentFile();
 
-                // Check if the file exists and is a file
-                if (outputCsvFile.exists() && outputCsvFile.isFile()) {
-                    System.out.println("The provided path already exists. Please give a different path.");
-                } else {
-                    File parentDir = outputCsvFile.getParentFile();
-
-                    if (parentDir != null && parentDir.exists()) {
-                        // Check if the parent directory is writable
-                        if (!parentDir.canWrite()) {
-                            System.out.println("The parent directory of the given path is not writable. Please give a different path.");
-                        } else {
-                            validPath = true;
-                            System.out.println("Output file path: " + outputCsvFile.getAbsolutePath());
-                        }
+                if (parentDir != null && parentDir.exists()) {
+                    // Check if the parent directory is writable
+                    if (!parentDir.canWrite()) {
+                        System.out.println("The parent directory of the given path is not writable. Please give a different path.");
+                    } else {
+                        validPath = true;
+                        System.out.println("Output file path: " + outputCsvFile.getAbsolutePath());
                     }
                 }
             }
         }
 
-        try (FileOutputStream fos = new FileOutputStream(outputCsvFile);
-             Writer fw = new OutputStreamWriter(fos, StandardCharsets.UTF_8))
-        {
-            CsvReaderWriter.writeLine(fw, headers);
-
-            for (CustomerData cd : customers) {
-                CsvReaderWriter.writeLine(fw, cd.toCsvLine());
-            }
-        }
+        /*
+         * Step 4:  Write the customer data to the path given by the user.
+         */
+        writeCustomers(outputCsvFile, parsedCustomers.getHeaders(), parsedCustomers.getCustomerCollection());
     }
+
 
 }
