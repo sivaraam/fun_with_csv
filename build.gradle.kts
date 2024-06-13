@@ -31,6 +31,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/de.siegmar/fastcsv
     implementation("de.siegmar:fastcsv:3.1.0")
+
+    dependencies {
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    }
+
 }
 
 tasks.register<JavaExec>("runSimpleDemo") {
@@ -67,17 +73,25 @@ tasks.register<JavaExec>("runCsvRepl") {
     standardOutput = System.`out` // Set standard input to the console input
 }
 
-/**
- * Task to build a Shadow JAR for generating a JAR that could be
- * easily executed in a system terminal. Executing the shadow JAR
- * in a terminal helps in exhibiting the power of implementing an
- * REPL using JLine which includes but is not limited to navigation
- * while inputting text, history.
- */
 tasks {
+    test {
+        useJUnitPlatform()
+    }
+
+    /**
+     * Task to build a Shadow JAR for generating a JAR that could be
+     * easily executed in a system terminal. Executing the shadow JAR
+     * in a terminal helps in exhibiting the power of implementing an
+     * REPL using JLine which includes but is not limited to navigation
+     * while inputting text, history.
+     */
     shadowJar {
         manifest {
             attributes(mapOf("Main-Class" to "org.example.CsvReplDemo"))
         }
+    }
+
+    build {
+        dependsOn(shadowJar)
     }
 }
